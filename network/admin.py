@@ -1,13 +1,25 @@
 from django.contrib import admin
 from .models import NetworkNode, Product
-
+from django.utils.html import format_html
 
 @admin.register(NetworkNode)
 class NetworkNodeAdmin(admin.ModelAdmin):
-    list_display = ('name', 'level', 'city', 'country', 'supplier', 'debt', 'created_at')
+    list_display = ('name', 'level', 'city', 'country', 'supplier_link', 'debt', 'created_at')
     list_filter = ('city',)
     search_fields = ('name', 'city')
     list_select_related = ('supplier',)
+
+    def supplier_link(self, obj):
+        """Ссылка на поставщика"""
+        if obj.supplier:
+            return format_html(
+                '<a href="/admin/network/networknode/{}/change/">{}</a>',
+                obj.supplier.id,
+                obj.supplier.name
+            )
+        return "Нет поставщика"
+
+    supplier_link.short_description = 'Поставщик'
 
     @admin.action(description="Очистить задолженность перед поставщиком")
     def clear_debt(self, request, queryset):
