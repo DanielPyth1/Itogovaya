@@ -29,28 +29,43 @@ http://127.0.0.1:8000/api/ — API.
 
 
 
-
 Модели
 
 
 Узлы сети (Network Nodes):
+
 name — Название (обязательно).
+
 email — Email.
+
 country — Страна.
+
 city — Город.
+
 street — Улица.
+
 house_number — Номер дома.
+
 level — Уровень иерархии (0: Завод, 1: Розничная сеть, 2: Индивидуальный предприниматель).
+
 supplier — Поставщик (ForeignKey на другой узел сети).
+
 debt — Задолженность перед поставщиком.
+
 created_at — Дата создания (автоматически).
 
 
+
 Продукты (Products):
+
 name — Название продукта.
+
 model — Модель.
+
 release_date — Дата выхода на рынок.
+
 network_node — Связанный узел сети (ForeignKey).
+
 
 
 
@@ -58,21 +73,35 @@ network_node — Связанный узел сети (ForeignKey).
 
 
 Узлы сети (Network Nodes):
+
 GET /api/nodes/ — Получить список всех узлов сети.
+
 POST /api/nodes/ — Создать новый узел сети.
+
 GET /api/nodes/{id}/ — Получить данные конкретного узла.
+
 PUT /api/nodes/{id}/ — Обновить узел.
+
 PATCH /api/nodes/{id}/ — Частично обновить узел.
+
 DELETE /api/nodes/{id}/ — Удалить узел.
 
 
+
 Продукты (Products):
+
 GET /api/products/ — Получить список всех продуктов.
+
 POST /api/products/ — Создать новый продукт.
+
 GET /api/products/{id}/ — Получить данные конкретного продукта.
+
 PUT /api/products/{id}/ — Обновить продукт.
+
 PATCH /api/products/{id}/ — Частично обновить продукт.
+
 DELETE /api/products/{id}/ — Удалить продукт.
+
 
 
 Функционал админки:
